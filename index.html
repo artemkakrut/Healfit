@@ -12,6 +12,7 @@
       font-family: sans-serif;
       background: #f5fdf9;
       color: #222;
+      overflow-x: hidden;
     }
 
     section {
@@ -23,6 +24,18 @@
       padding: 40px 20px;
       box-sizing: border-box;
       text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    #bgVideo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;
+      z-index: 0;
     }
 
     .container {
@@ -32,6 +45,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      position: relative;
+      z-index: 2;
     }
 
     .top-logo {
@@ -39,6 +54,7 @@
       top: 20px;
       right: 20px;
       max-width: 120px;
+      z-index: 3;
     }
 
     .hero-flex {
@@ -60,7 +76,7 @@
     .hero-text {
       font-size: 2em;
       font-weight: bold;
-      color: #0a8a60;
+      color: #ffffff;
       max-width: 400px;
       text-align: left;
       margin-top: 0;
@@ -68,7 +84,7 @@
 
     .hero-subtext {
       font-size: 1em;
-      color: #555;
+      color: #f1f1f1;
       max-width: 400px;
       text-align: left;
       margin-top: 20px;
@@ -84,6 +100,8 @@
       font-size: 1em;
       border-radius: 8px;
       transition: background-color 0.3s ease;
+      z-index: 2;
+      position: relative;
     }
 
     .button-link:hover {
@@ -122,13 +140,17 @@
   </style>
 </head>
 <body>
+  <!-- Фоновое видео -->
+  <video autoplay muted loop playsinline id="bgVideo">
+    <source src="background.mp4" type="video/mp4">
+  </video>
+
   <img src="logo.png" alt="Логотип HealFit" class="top-logo">
 
   <section id="start">
     <div class="container">
       <div class="hero-flex">
         <img src="phonemockup.png" alt="Скрин из Telegram чат-бота" class="hero-image">
-
         <div style="display: flex; flex-direction: column; align-items: flex-start;">
           <div class="hero-text">
             Цифровой помощник<br>для поддержания<br>здорового образа жизни
@@ -138,12 +160,10 @@
           </div>
         </div>
       </div>
-
       <a class="button-link" href="https://en.wikipedia.org/wiki/Never_Gonna_Give_You_Up" target="_blank">Перейти в чат-бот</a>
     </div>
   </section>
 
-  <!-- Остальная часть сайта без изменений -->
   <section id="about">
     <div class="container">
       <h2>О проекте</h2>
