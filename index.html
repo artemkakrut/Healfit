@@ -8,14 +8,14 @@
     html, body {
       margin: 0;
       padding: 0;
-      scroll-behavior: smooth; /* Плавная прокрутка */
+      scroll-behavior: smooth;
       font-family: sans-serif;
       background: #f5fdf9;
       color: #222;
     }
 
     section {
-      height: 100vh; /* Каждый блок на полный экран */
+      height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -26,30 +26,49 @@
     }
 
     .container {
-      max-width: 900px;
+      max-width: 1200px;
       width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    .header-flex {
+    /* Логотип в правом верхнем углу */
+    .top-logo {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      max-width: 120px;
+    }
+
+    /* Первый экран — две колонки */
+    .hero-flex {
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: row;
       align-items: center;
       justify-content: center;
-      gap: 20px;
+      gap: 40px;
+      flex-wrap: wrap;
     }
 
-    .logo {
-      max-width: 200px;
+    .hero-image {
+      max-width: 300px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     }
 
-    .intro-text {
-      font-size: 1.2em;
+    .hero-text {
+      font-size: 2em;
+      font-weight: bold;
       color: #0a8a60;
+      max-width: 400px;
+      text-align: left;
     }
 
     .button-link {
-      margin-top: 30px;
-      padding: 12px 24px;
+      margin-top: 40px;
+      padding: 14px 28px;
       background-color: #0a8a60;
       color: white;
       text-decoration: none;
@@ -66,6 +85,7 @@
       font-size: 1.8em;
       color: #0a8a60;
       margin-bottom: 20px;
+      text-align: center;
     }
 
     p {
@@ -73,6 +93,7 @@
       line-height: 1.6;
       max-width: 700px;
       margin: 0 auto;
+      text-align: center;
     }
 
     .placeholder {
@@ -82,6 +103,7 @@
       background-color: #e9f8f0;
       max-width: 700px;
       margin-top: 30px;
+      text-align: center;
     }
 
     a {
@@ -91,18 +113,28 @@
   </style>
 </head>
 <body>
+  <!-- Логотип в правом верхнем углу -->
+  <img src="logo.png" alt="Логотип HealFit" class="top-logo">
+
   <section id="start">
     <div class="container">
-      <div class="header-flex">
-        <img src="logo.png" alt="Логотип HealFit" class="logo">
-        <div class="intro-text">
-          <strong>Цифровой помощник для поддержания здорового образа жизни</strong>
+      <!-- Основной блок с телефоном и текстом -->
+      <div class="hero-flex">
+        <!-- Левая часть — изображение телефона с Telegram -->
+        <img src="phone-mockup.png" alt="Скрин из Telegram чат-бота" class="hero-image">
+
+        <!-- Правая часть — фраза слоган -->
+        <div class="hero-text">
+          Цифровой помощник<br>для поддержания<br>здорового образа жизни
         </div>
       </div>
+
+      <!-- Кнопка перехода -->
       <a class="button-link" href="https://en.wikipedia.org/wiki/Never_Gonna_Give_You_Up" target="_blank">Перейти в чат-бот</a>
     </div>
   </section>
 
+  <!-- Остальная часть сайта без изменений -->
   <section id="about">
     <div class="container">
       <h2>О проекте</h2>
