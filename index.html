@@ -34,7 +34,6 @@
       align-items: center;
     }
 
-    /* Логотип в правом верхнем углу */
     .top-logo {
       position: absolute;
       top: 20px;
@@ -42,14 +41,14 @@
       max-width: 120px;
     }
 
-    /* Первый экран — две колонки */
     .hero-flex {
       display: flex;
       flex-direction: row;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       gap: 40px;
       flex-wrap: wrap;
+      margin-bottom: 20px;
     }
 
     .hero-image {
@@ -64,10 +63,20 @@
       color: #0a8a60;
       max-width: 400px;
       text-align: left;
+      margin-top: 0;
+    }
+
+    .hero-subtext {
+      font-size: 1em;
+      color: #555;
+      max-width: 400px;
+      text-align: left;
+      margin-top: 20px;
+      line-height: 1.6;
     }
 
     .button-link {
-      margin-top: 40px;
+      margin-top: 30px;
       padding: 14px 28px;
       background-color: #0a8a60;
       color: white;
@@ -113,23 +122,23 @@
   </style>
 </head>
 <body>
-  <!-- Логотип в правом верхнем углу -->
   <img src="logo.png" alt="Логотип HealFit" class="top-logo">
 
   <section id="start">
     <div class="container">
-      <!-- Основной блок с телефоном и текстом -->
       <div class="hero-flex">
-        <!-- Левая часть — изображение телефона с Telegram -->
-        <img src="phonemockup2-2.png" alt="Скрин из Telegram чат-бота" class="hero-image">
+        <img src="phonemockup.png" alt="Скрин из Telegram чат-бота" class="hero-image">
 
-        <!-- Правая часть — фраза слоган -->
-        <div class="hero-text">
-          Цифровой помощник<br>для поддержания<br>здорового образа жизни
+        <div style="display: flex; flex-direction: column; align-items: flex-start;">
+          <div class="hero-text">
+            Цифровой помощник<br>для поддержания<br>здорового образа жизни
+          </div>
+          <div class="hero-subtext">
+            Наш ИИ выявляет дисбалансы, определяет уровень физической активности и предлагает полноценный план питания и тренировок, который позволит без запретов, без резких изменений в образе жизни достичь желаемого результата в фигуре и укрепить свое здоровье.
+          </div>
         </div>
       </div>
 
-      <!-- Кнопка перехода -->
       <a class="button-link" href="https://en.wikipedia.org/wiki/Never_Gonna_Give_You_Up" target="_blank">Перейти в чат-бот</a>
     </div>
   </section>
