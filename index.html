@@ -1,77 +1,223 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HealFit</title>
   <style>
-    html, body {margin:0;padding:0;scroll-behavior:smooth;font-family:sans-serif;background:#f5fdf9;color:#222;overflow-x:hidden;}
-    section{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:40px 20px;box-sizing:border-box;text-align:center;position:relative;z-index:1;}
-    #start{position:relative;overflow:hidden;}
-    /* Видео скрыто, пока не готово к воспроизведению */
-    #bgVideo{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none;opacity:0;transition:opacity .5s ease;}
-    .container{max-width:1200px;width:100%;margin:0 auto;display:flex;flex-direction:column;align-items:center;position:relative;z-index:2;}
-    .top-logo{position:absolute;top:20px;right:20px;max-width:120px;z-index:3;}
-    .hero-flex{display:flex;flex-direction:row;align-items:flex-start;justify-content:center;gap:40px;flex-wrap:wrap;margin-bottom:20px;}
-    .hero-image{max-width:300px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.1);} 
-    .hero-text{font-size:2em;font-weight:bold;color:#fff;max-width:400px;text-align:left;margin:0;}
-    .hero-subtext{font-size:1em;color:#f1f1f1;max-width:400px;text-align:left;margin-top:20px;line-height:1.6;}
-    .button-link{margin-top:30px;padding:14px 28px;background:#0a8a60;color:#fff;text-decoration:none;font-size:1em;border-radius:8px;transition:background .3s ease;position:relative;z-index:2;}
-    .button-link:hover{background:#086f4e;}
-    h2{font-size:1.8em;color:#0a8a60;margin-bottom:20px;text-align:center;}
-    p{font-size:1.1em;line-height:1.6;max-width:700px;margin:0 auto;text-align:center;}
-    .placeholder{border:2px dashed #0a8a60;padding:30px;border-radius:10px;background:#e9f8f0;max-width:700px;margin-top:30px;text-align:center;}
-    a{color:#0a8a60;text-decoration:none;}
+    /* === БАЗОВЫЕ СТИЛИ === */
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      font-family: sans-serif;
+      background: #f5fdf9;
+      color: #222;
+      overflow-x: hidden;
+    }
+
+    section {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+      box-sizing: border-box;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* === ПЕРВАЯ СЕКЦИЯ С ФОНОМ === */
+    #start {
+      position: relative;
+      overflow: hidden;
+    }
+    /* Слой-псевдоэлемент с постером вместо видео */
+    #start::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("poster.png") center / cover no-repeat fixed;
+      z-index: 0;
+      filter: brightness(0.85);
+    }
+
+    .container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 2; /* поверх фона */
+    }
+
+    /* === ДЕКОР === */
+    .top-logo {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      max-width: 120px;
+      z-index: 3;
+    }
+
+    .hero-flex {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .hero-image {
+      max-width: 300px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-text {
+      font-size: 2em;
+      font-weight: bold;
+      color: #ffffff;
+      max-width: 400px;
+      text-align: left;
+      margin: 0;
+    }
+
+    .hero-subtext {
+      font-size: 1em;
+      color: #f1f1f1;
+      max-width: 400px;
+      text-align: left;
+      margin-top: 20px;
+      line-height: 1.6;
+    }
+
+    .button-link {
+      margin-top: 30px;
+      padding: 14px 28px;
+      background-color: #0a8a60;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1em;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+      position: relative;
+      z-index: 2;
+    }
+    .button-link:hover {
+      background-color: #086f4e;
+    }
+
+    /* === ТЕКСТОВЫЕ СЕКЦИИ === */
+    h2 {
+      font-size: 1.8em;
+      color: #0a8a60;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .placeholder {
+      border: 2px dashed #0a8a60;
+      padding: 30px;
+      border-radius: 10px;
+      background: #e9f8f0;
+      max-width: 700px;
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    a {
+      color: #0a8a60;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
-  <img src="logo.png" alt="Логотип HealFit" class="top-logo">
+  <!-- ЛОГОТИП -->
+  <img src="logo.png" alt="Логотип HealFit" class="top-logo" />
 
+  <!-- === ГЕРО-СЕКЦИЯ === -->
   <section id="start">
-    <!-- Фоновое видео: маленький размер, без звука, постер отображается пока не загрузится первый кадр -->
-    <video id="bgVideo" muted autoplay loop playsinline preload="auto" disablePictureInPicture poster="poster.png">
-      <source src="background.mp4" type="video/mp4">
-    </video>
-
     <div class="container">
       <div class="hero-flex">
-        <img src="phonemockup.png" alt="Скрин из Telegram чат-бота" class="hero-image">
-        <div style="display:flex;flex-direction:column;align-items:flex-start;">
-          <div class="hero-text">Цифровой помощник<br>для поддержания<br>здорового образа жизни</div>
-          <div class="hero-subtext">Наш ИИ выявляет дисбалансы, определяет уровень физической активности и предлагает полноценный план питания и тренировок, который позволит без запретов, без резких изменений в образе жизни достичь желаемого результата в фигуре и укрепить свое здоровье.</div>
+        <img src="phonemockup.png" alt="Скрин из Telegram чат‑бота" class="hero-image" />
+        <div style="display: flex; flex-direction: column; align-items: flex-start;">
+          <div class="hero-text">Цифровой помощник<br />для поддержания<br />здорового образа жизни</div>
+          <div class="hero-subtext">
+            Наш ИИ выявляет дисбалансы, определяет уровень физической активности и предлагает полноценный план питания и тренировок, который позволит без запретов, без резких изменений в образе жизни достичь желаемого результата в фигуре и укрепить свое здоровье.
+          </div>
         </div>
       </div>
-      <a class="button-link" href="https://en.wikipedia.org/wiki/Never_Gonna_Give_You_Up" target="_blank">Перейти в чат-бот</a>
+      <a class="button-link" href="https://en.wikipedia.org/wiki/Never_Gonna_Give_You_Up" target="_blank">Перейти в чат‑бот</a>
     </div>
   </section>
-  <!-- JS: показываем видео, когда готово -->
-  <script>
-    const vid=document.getElementById('bgVideo');
-    // гарантируем отсутствие звука и отсутствие блокировки автопуска
-    vid.muted=true;
 
-    // показываем видео, как только оно реально начинает играть
-    function show(){vid.style.opacity='1';}
+  <!-- === ОСТАЛЬНЫЕ СЕКЦИИ === -->
+  <section id="about">
+    <div class="container">
+      <h2>О проекте</h2>
+      <p>
+        HealFit — это персонализированный сервис, который помогает людям улучшать питание, уровень активности и общее самочувствие. Мы объединяем алгоритмы ИИ, лабораторную аналитику и мотивационные инструменты в одном простом приложении.
+      </p>
+    </div>
+  </section>
 
-    // попытка автозапуска после метаданных
-    vid.addEventListener('loadedmetadata',()=>{
-      vid.play().then(show).catch(()=>{});
-    });
+  <section id="mission">
+    <div class="container">
+      <h2>Миссия</h2>
+      <p>
+        Мы верим, что здоровье — это не роскошь, а основа качества жизни. HealFit стремится сделать заботу о здоровье простой, осознанной и вдохновляющей.
+      </p>
+    </div>
+  </section>
 
-    // запасные события — когда может воспроизвести кадр
-    vid.addEventListener('canplay',show);
-    vid.addEventListener('playing',show);
+  <section id="interface">
+    <div class="container">
+      <h2>Интерфейс</h2>
+      <div class="placeholder">[Визуализация интерфейса: вкладки анализа, рациона, новостей и рекомендаций — чистый, минималистичный дизайн]</div>
+    </div>
+  </section>
 
-    // fallback: если через 5 с видео всё ещё скрыто — показываем постер
-    setTimeout(()=>{if(getComputedStyle(vid).opacity==='0'){vid.style.opacity='1';}},5000);
-  </script>
+  <section id="motivation">
+    <div class="container">
+      <h2>Мотивация</h2>
+      <p>
+        Мы понимаем, что путь к ЗОЖ часто сопровождается прокрастинацией, скукой или неуверенностью. Поэтому в HealFit мы внедрили систему поощрений, трекеров прогресса и поддержку через персонализированные советы.
+      </p>
+    </div>
+  </section>
 
-  <!-- Остальные секции без изменений -->
-  <section id="about"><div class="container"><h2>О проекте</h2><p>HealFit — это персонализированный сервис, который помогает людям улучшать питание, уровень активности и общее самочувствие. Мы объединяем алгоритмы ИИ, лабораторную аналитику и мотивационные инструменты в одном простом приложении.</p></div></section>
-  <section id="mission"><div class="container"><h2>Миссия</h2><p>Мы верим, что здоровье — это не роскошь, а основа качества жизни. HealFit стремится сделать заботу о здоровье простой, осознанной и вдохновляющей.</p></div></section>
-  <section id="interface"><div class="container"><h2>Интерфейс</h2><div class="placeholder">[Визуализация интерфейса: вкладки анализа, рациона, новостей и рекомендаций — чистый, минималистичный дизайн]</div></div></section>
-  <section id="motivation"><div class="container"><h2>Мотивация</h2><p>Мы понимаем, что путь к ЗОЖ часто сопровождается прокрастинацией, скукой или неуверенностью. Поэтому в HealFit мы внедрили систему поощрений, трекеров прогресса и поддержку через персонализированные советы.</p></div></section>
-  <section id="user"><div class="container"><h2>Пользователь</h2><div class="placeholder">[Изображение счастливого пользователя, получающего советы от нутрициолога]</div></div></section>
-  <section id="contacts"><div class="container"><h2>Контакты</h2><p>Пишите нам: <a href="mailto:you@example.com">you@example.com</a></p></div></section>
+  <section id="user">
+    <div class="container">
+      <h2>Пользователь</h2>
+      <div class="placeholder">[Изображение счастливого пользователя, получающего советы от нутрициолога]</div>
+    </div>
+  </section>
+
+  <section id="contacts">
+    <div class="container">
+      <h2>Контакты</h2>
+      <p>
+        Пишите нам: <a href="mailto:you@example.com">you@example.com</a>
+      </p>
+    </div>
+  </section>
 </body>
 </html>
