@@ -12,7 +12,7 @@
       padding: 0;
       scroll-behavior: smooth;
       font-family: sans-serif;
-      background: #f5fdf9;
+      background: #f5fdf9; /* единый фон на всех секциях */
       color: #222;
       overflow-x: hidden;
     }
@@ -30,22 +30,10 @@
       z-index: 1;
     }
 
-    /* === ПЕРВАЯ СЕКЦИЯ С ФОНОМ === */
+    /* === ПЕРВАЯ СЕКЦИЯ === */
     #start {
       position: relative;
       overflow: hidden;
-    }
-    /* Слой-псевдоэлемент с постером вместо видео */
-    #start::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url("poster.png") center / cover no-repeat fixed;
-      z-index: 0;
-      filter: brightness(0.85);
     }
 
     .container {
@@ -56,7 +44,7 @@
       flex-direction: column;
       align-items: center;
       position: relative;
-      z-index: 2; /* поверх фона */
+      z-index: 2;
     }
 
     /* === ДЕКОР === */
@@ -87,7 +75,7 @@
     .hero-text {
       font-size: 2em;
       font-weight: bold;
-      color: #ffffff;
+      color: #0a8a60; /* изменили на зелёный для читаемости на светлом фоне */
       max-width: 400px;
       text-align: left;
       margin: 0;
@@ -95,7 +83,7 @@
 
     .hero-subtext {
       font-size: 1em;
-      color: #f1f1f1;
+      color: #555;
       max-width: 400px;
       text-align: left;
       margin-top: 20px;
@@ -157,7 +145,7 @@
   <section id="start">
     <div class="container">
       <div class="hero-flex">
-        <img src="phonemockup.png" alt="Скрин из Telegram чат‑бота" class="hero-image" />
+        <img src="phonemockup.png" alt="Скрин из Telegram чат-бота" class="hero-image" />
         <div style="display: flex; flex-direction: column; align-items: flex-start;">
           <div class="hero-text">Цифровой помощник<br />для поддержания<br />здорового образа жизни</div>
           <div class="hero-subtext">
@@ -165,7 +153,7 @@
           </div>
         </div>
       </div>
-      <a class="button-link" href="https://en.wikipedia.org/wiki/Never_Gonna_Give_You_Up" target="_blank">Перейти в чат‑бот</a>
+      <a class="button-link" href="https://en.wikipedia.org/wiki/Never_Gonna_Give_You_Up" target="_blank">Перейти в чат-бот</a>
     </div>
   </section>
 
@@ -191,7 +179,7 @@
   <section id="interface">
     <div class="container">
       <h2>Интерфейс</h2>
-      <div class="placeholder">[Визуализация интерфейса: вкладки анализа, рациона, новостей и рекомендаций — чистый, минималистичный дизайн]</div>
+      <div class="placeholder">[Визуализация интерфейса: вкладки анализа, рациона, новостей и рекомендаций — чистый, минималистичный дизайн]</div>
     </div>
   </section>
 
@@ -199,7 +187,7 @@
     <div class="container">
       <h2>Мотивация</h2>
       <p>
-        Мы понимаем, что путь к ЗОЖ часто сопровождается прокрастинацией, скукой или неуверенностью. Поэтому в HealFit мы внедрили систему поощрений, трекеров прогресса и поддержку через персонализированные советы.
+        Мы понимаем, что путь к ЗОЖ часто сопровождается прокрастинацией, скукой или неуверенностью. Поэтому в HealFit мы внедрили систему поощрений, трекеров прогресса и поддержку через персонализированные советы.
       </p>
     </div>
   </section>
