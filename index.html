@@ -47,10 +47,23 @@
   <!-- JS: показываем видео, когда готово -->
   <script>
     const vid=document.getElementById('bgVideo');
+    // гарантируем отсутствие звука и отсутствие блокировки автопуска
+    vid.muted=true;
+
+    // показываем видео, как только оно реально начинает играть
     function show(){vid.style.opacity='1';}
+
+    // попытка автозапуска после метаданных
+    vid.addEventListener('loadedmetadata',()=>{
+      vid.play().then(show).catch(()=>{});
+    });
+
+    // запасные события — когда может воспроизвести кадр
     vid.addEventListener('canplay',show);
-    // fallback: если не сработало событие за 3с, покажем видео
-    setTimeout(show,3000);
+    vid.addEventListener('playing',show);
+
+    // fallback: если через 5 с видео всё ещё скрыто — показываем постер
+    setTimeout(()=>{if(getComputedStyle(vid).opacity==='0'){vid.style.opacity='1';}},5000);
   </script>
 
   <!-- Остальные секции без изменений -->
