@@ -1,104 +1,104 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HealFit</title>
+  <!-- Минимальный стиль, макет как на ogarev.com: полноэкранные секции, боковое меню, плавная прокрутка -->
   <style>
-    /* БАЗОВЫЕ СТИЛИ */
-    html,body{margin:0;padding:0;scroll-behavior:smooth;font-family:sans-serif;background:#f5fdf9;color:#222;overflow-x:hidden}
-    section{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:40px 20px;box-sizing:border-box;text-align:center;position:relative}
-    #start{position:relative;overflow:hidden}
-    .container{max-width:1200px;width:100%;margin:0 auto;display:flex;flex-direction:column;align-items:center}
-    .top-logo{position:absolute;top:20px;right:20px;max-width:120px}
-    .hero-flex{display:flex;flex-direction:row;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;margin-bottom:20px}
-    .hero-image{max-width:300px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.1)}
-    .hero-text{font-size:2.2em;font-weight:700;color:#0a8a60;max-width:400px;text-align:left;margin:0}
-    .hero-subtext{font-size:1.1em;color:#555;max-width:400px;text-align:left;margin-top:18px;line-height:1.6}
-    .button-link{margin-top:32px;padding:14px 28px;background:#0a8a60;color:#fff;border-radius:8px;text-decoration:none;transition:background .3s ease}
-    .button-link:hover{background:#086f4e}
-    h2{font-size:1.8em;color:#0a8a60;margin-bottom:20px}
-    p{font-size:1.1em;line-height:1.6;max-width:700px;margin:0 auto}
-    ul{list-style:none;padding:0;margin:0 auto;max-width:700px;text-align:left}
-    ul li{margin-bottom:10px;position:relative;padding-left:20px}
-    ul li::before{content:"✔";position:absolute;left:0;color:#0a8a60}
-    .placeholder{border:2px dashed #0a8a60;padding:30px;border-radius:10px;background:#e9f8f0;max-width:700px;margin-top:30px}
-    a{color:#0a8a60;text-decoration:none}
+    :root{
+      --green:#0a8a60;
+      --bg:#f5fdf9;
+      --dark:#222;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;scroll-behavior:smooth;font-family:sans-serif;background:var(--bg);color:var(--dark);}
+    body{display:flex;}
+    /* Боковое меню */
+    nav{width:80px;display:flex;flex-direction:column;align-items:center;gap:24px;padding:40px 0;position:fixed;left:0;top:0;height:100%;}
+    nav a{width:14px;height:14px;border:2px solid var(--green);border-radius:50%;transition:.3s;}
+    nav a:hover,nav a.active{background:var(--green);}    
+    /* Контент прокручивается справа */
+    main{margin-left:80px;flex:1;scroll-snap-type:y mandatory;overflow-y:auto;height:100vh;}
+    section{height:100vh;min-height:600px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:0 10vw;scroll-snap-align:start;position:relative;}
+    h1,h2{color:var(--green);margin-bottom:24px;font-weight:700;}
+    h1{font-size:clamp(32px,5vw,60px);max-width:600px;line-height:1.2;}
+    h2{font-size:clamp(24px,3vw,36px);}    
+    p,li{font-size:1.1em;line-height:1.6;max-width:600px;}
+    ul{list-style:none;margin:24px 0 0 0;padding-left:20px;}
+    ul li::before{content:"✔";color:var(--green);margin-right:8px;}
+    .btn{display:inline-block;margin-top:32px;padding:14px 28px;background:var(--green);color:#fff;border-radius:8px;text-decoration:none;transition:.3s;}
+    .btn:hover{background:#086f4e;}
+    /* стрелка вниз */
+    .arrow{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);font-size:32px;color:var(--green);animation:jump 2s infinite;}
+    @keyframes jump{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,8px);}}
   </style>
 </head>
 <body>
-  <img src="logo.png" alt="Логотип HealFit" class="top-logo" />
+  <!-- Навигация -->
+  <nav>
+    <a href="#hero" title="Начало"></a>
+    <a href="#why"  title="Почему"></a>
+    <a href="#how"  title="Как"></a>
+    <a href="#features" title="Плюсы"></a>
+    <a href="#contact" title="Контакты"></a>
+  </nav>
 
-  <!-- HERO -->
-  <section id="start">
-    <div class="container">
-      <div class="hero-flex">
-        <img src="phonemockup.png" alt="Скрин чат‑бота HealFit" class="hero-image" />
-        <div style="display:flex;flex-direction:column;align-items:flex-start;">
-          <div class="hero-text">Твоя персональная формула здоровья</div>
-          <div class="hero-subtext">Ответь на короткую анкету, получи готовый план питания и активности на каждый день и отслеживай прогресс прямо в Telegram.</div>
-        </div>
-      </div>
-      <a class="button-link" href="https://t.me/healfit_bot" target="_blank">Начать бесплатно</a>
-    </div>
-  </section>
+  <main>
+    <!-- HERO -->
+    <section id="hero">
+      <h1>Твоя персональная формула здоровья</h1>
+      <p>HealFit подбирает питание, тренировки и советы под твой ритм жизни. Никаких запретов — только работающие привычки.</p>
+      <a class="btn" href="https://t.me/healfit_bot" target="_blank">Начать бесплатно</a>
+      <span class="arrow">↓</span>
+    </section>
 
-  <!-- О ПРОЕКТЕ -->
-  <section id="about">
-    <div class="container">
-      <h2>Почему HealFit?</h2>
-      <p>Мы объединили нутрициологию, фитнес-науку и геймификацию, чтобы создать сервис, который помогает<br>поддерживать форму без строгих диет и изнурительных тренировок.</p>
+    <!-- WHY -->
+    <section id="why">
+      <h2>Почему это работает</h2>
       <ul>
-        <li>Анкета 30&nbsp;секунд&nbsp;— и план готов</li>
-        <li>ИИ учитывает твои вкусы и график</li>
-        <li>Напоминания и лайфхаки без нотаций</li>
+        <li>Анкета 30 секунд — план на неделю уже в телефоне;</li>
+        <li>ИИ учитывает твои цели, вкусы и бюджет;</li>
+        <li>Геймификация: собирай «Энергию» и открывай уровни;</li>
+        <li>Реальные результаты — первые изменения через 7 дней.</li>
       </ul>
-    </div>
-  </section>
+    </section>
 
-  <!-- МИССИЯ / ЦЕННОСТЬ -->
-  <section id="mission">
-    <div class="container">
-      <h2>Наша цель</h2>
-      <p>Сделать заботу о себе такой&nbsp;же привычной, как утренний кофе. Мы верим: здоровые привычки формируются <strong>маленькими шагами</strong>, а мотивация растёт, когда видишь результат.</p>
-    </div>
-  </section>
-
-  <!-- ИНТЕРФЕЙС -->
-  <section id="interface">
-    <div class="container">
-      <h2>Удобный интерфейс</h2>
-      <div class="placeholder">[Скриншот: вкладки «Рацион», «Тренировки», «Прогресс»]</div>
+    <!-- HOW -->
+    <section id="how">
+      <h2>3 шага до нового тебя</h2>
       <ul>
-        <li>Полезные блюда с простыми рецептами</li>
-        <li>Тренировки дома и в зале 10‑30&nbsp;минут</li>
-        <li>График веса и энергии в одном окне</li>
+        <li>Заполняешь короткую анкету в Telegram</li>
+        <li>Получаешь персональный рацион и тренировки</li>
+        <li>Следуешь подсказкам, наблюдаешь прогресс</li>
       </ul>
-    </div>
-  </section>
+    </section>
 
-  <!-- МОТИВАЦИЯ / ГЕЙМИФИКАЦИЯ -->
-  <section id="motivation">
-    <div class="container">
-      <h2>Геймификация</h2>
-      <p>Зарабатывай баллы «Энергия», открывай уровни и соревнуйся с друзьями. Наш маскот подскажет, как сделать шаги интереснее.</p>
-    </div>
-  </section>
+    <!-- FEATURES / BENEFITS -->
+    <section id="features">
+      <h2>Что внутри HealFit</h2>
+      <ul>
+        <li>База из 3 000 рецептов с КБЖУ</li>
+        <li>Домашние тренировки 10–30 минут</li>
+        <li>Синхронизация с Apple / Google Health</li>
+        <li>Маскот-коуч и ежедневные челленджи</li>
+      </ul>
+    </section>
 
-  <!-- ОТЗЫВЫ -->
-  <section id="user">
-    <div class="container">
-      <h2>Истории успеха</h2>
-      <div class="placeholder">[Фото до/после + короткие цитаты пользователей]</div>
-    </div>
-  </section>
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2>Связаться с нами</h2>
+      <p>По любым вопросам пишите на <a href="mailto:d.muratova2011@yandex.ru">d.muratova2011@yandex.ru</a> — мы онлайн каждый день.</p>
+    </section>
+  </main>
 
-  <!-- КОНТАКТЫ -->
-  <section id="contacts">
-    <div class="container">
-      <h2>Свяжитесь с нами</h2>
-      <p>Возникли вопросы? Пишите на&nbsp;<a href="mailto:d.muratova2011@yandex.ru">d.muratova2011@yandex.ru</a> — поможем запустить HealFit и ответим на любые вопросы.</p>
-    </div>
-  </section>
+  <script>
+    // Подсветка активной точки меню при скролле
+    const links=[...document.querySelectorAll('nav a')]
+    const sections=[...document.querySelectorAll('main section')]
+    const options={root:null,rootMargin:'0px',threshold:0.6}
+    const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle('active',l.getAttribute('href').slice(1)===e.target.id))}})},options)
+    sections.forEach(s=>observer.observe(s))
+  </script>
 </body>
 </html>
