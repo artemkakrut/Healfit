@@ -5,43 +5,60 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HealFit</title>
   <style>
-    :root{--green:#0a8a60;--bg:#f5fdf9;--dark:#222;}
+    :root{--green:#0a8a60;--bg:#f5fdf9;--dark:#222;--card:#e9f8f0}
     *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%;scroll-behavior:smooth;font-family:sans-serif;background:var(--bg);color:var(--dark);}    
+    html,body{height:100%;scroll-behavior:smooth;font-family:sans-serif;background:var(--bg);color:var(--dark);} 
 
-    /* === FIXED TOP BAR === */
-    header{position:fixed;top:0;left:0;width:100%;height:64px;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.08);z-index:10;display:flex;align-items:center;justify-content:center;}
-    .nav-inner{max-width:1200px;width:100%;display:flex;align-items:center;justify-content:space-between;padding:0 32px;}
-    .logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:1.1em;color:var(--green);text-decoration:none;}
-    .menu{display:flex;gap:32px;}
-    .menu a{color:var(--dark);text-decoration:none;font-weight:500;transition:.3s;}
-    .menu a:hover,.menu a.active{color:var(--green);}
+    /* HEADER */
+    header{position:fixed;inset:0 0 auto 0;height:64px;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.08);z-index:20;display:flex;align-items:center;}
+    .nav-inner{max-width:1200px;width:100%;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 32px;}
+    .logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:1.1em;color:var(--green);text-decoration:none;white-space:nowrap;}
+    .logo img{height:40px;}
+    nav.menu{display:flex;gap:32px;flex-wrap:wrap;}
+    .menu a{color:var(--dark);text-decoration:none;font-weight:500;white-space:nowrap;transition:.3s;}
+    .menu a:hover,.menu a.active{color:var(--green);}    
+    @media(max-width:600px){header{height:56px;} .nav-inner{padding:0 16px;} .logo img{height:32px;} nav.menu{gap:16px;font-size:.9em;}}
 
-    /* === SECTIONS === */
+    /* SECTIONS */
     main{margin-top:64px;height:calc(100vh - 64px);scroll-snap-type:y mandatory;overflow-y:auto;}
-    section{height:calc(100vh - 64px);min-height:600px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:0 10vw;scroll-snap-align:start;position:relative;}
+    section{height:calc(100vh - 64px);min-height:600px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:0 10vw;scroll-snap-align:start;text-align:left;}
+    @media(max-width:600px){section{padding:0 5vw;}}
 
     h1,h2{color:var(--green);margin-bottom:24px;font-weight:700;}
-    h1{font-size:clamp(32px,5vw,60px);max-width:600px;line-height:1.2;}
-    .tagline{font-size:1.2em;color:#555;margin-bottom:32px;max-width:600px;}
-    h2{font-size:clamp(24px,3vw,36px);}    
-    p,li{font-size:1.1em;line-height:1.6;max-width:600px;}
-    ul{list-style:none;padding:0;margin:24px 0 0 0;max-width:700px;text-align:left}
-    ul li{margin-bottom:10px;position:relative;padding-left:20px}
-    ul li::before{content:"✔";position:absolute;left:0;color:var(--green);}
-    .btn{display:inline-block;margin-top:32px;padding:14px 28px;background:var(--green);color:#fff;border-radius:8px;text-decoration:none;transition:.3s;}
+    h1{font-size:clamp(28px,6vw,60px);max-width:650px;line-height:1.2;}
+    p,li{font-size:1.05em;line-height:1.6;max-width:620px;}
+    .btn{display:inline-block;margin-top:32px;padding:14px 28px;background:var(--green);color:#fff;border-radius:8px;text-decoration:none;white-space:nowrap;transition:.3s;}
     .btn:hover{background:#086f4e;}
+
+    /* HERO WRAP */
+    .hero-wrap{display:flex;gap:40px;align-items:center;max-width:1000px;width:100%;}
+    .hero-left{flex:1;min-width:280px;}
+    .tg-img{flex:0 0 300px;max-width:300px;width:100%;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.1);}
+    @media(max-width:900px){.hero-wrap{flex-direction:column;text-align:center;} .hero-left{text-align:center;align-items:center;}}
+
+    /* WHY GRID */
+    .why-grid{display:grid;grid-template-columns:repeat(2,minmax(280px,1fr));gap:24px;max-width:900px;width:100%;}
+    @media(max-width:700px){.why-grid{grid-template-columns:1fr;}}
+    .why-card{padding:24px;border-radius:16px;background:var(--card);box-shadow:0 4px 12px rgba(0,0,0,.05);} 
+    .why-card h3{margin-bottom:12px;font-size:1.2em;color:var(--green);}    
+
+    /* HOW GRID */
+    .how-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:900px;width:100%;}
+    @media(max-width:700px){.how-grid{grid-template-columns:1fr;}}
+    .how-left ul{list-style:none;padding:0;margin-top:12px;}
+    .how-left li{margin-bottom:12px;position:relative;padding-left:22px;}
+    .how-left li::before{content:"✔";position:absolute;left:0;color:var(--green);} 
   </style>
 </head>
 <body>
-  <!-- TOP NAV BAR -->
   <header>
     <div class="nav-inner">
-      <a href="#hero" class="logo"><img src="logo%20wo%20text.png" alt="HealFit" style="height:40px;"><span>HealFit</span></a>
+      <a href="#hero" class="logo"><img src="logo%20wo%20text.png" alt="HealFit"><span>HealFit</span></a>
       <nav class="menu">
-        <a href="#why">Почему</a>
-        <a href="#how">Как&nbsp;это&nbsp;работает</a>
-        <a href="#features">Что&nbsp;внутри</a>
+        <a href="#hero">Главная</a>
+        <a href="#why">Почему&nbsp;мы?</a>
+        <a href="#how">Как&nbsp;это&nbsp;работает?</a>
+        <a href="#features">Что&nbsp;внутри?</a>
         <a href="#contact">Контакты</a>
       </nav>
     </div>
@@ -50,61 +67,69 @@
   <main>
     <!-- HERO -->
     <section id="hero">
-      <h1>Твой личный ассистент по ведению здорового образа жизни</h1>
-      <p style="margin-bottom: 1em;">HealFit - цифровая платформа на базе искусственного интеллекта, которая формирует персональные рекомендации по питанию и тренировкам, подстраиваясь под Ваш ритм жизни!</p>
-      <p style="margin-bottom: 1em;">Никаких запретов — только работающие привычки.</p>
-      <a class="btn" href="https://t.me/healfit_bot" target="_blank">Начать бесплатно</a>
+      <div class="hero-wrap">
+        <div class="hero-left">
+          <h1>Твой личный ассистент по ведению здорового образа жизни</h1>
+          <p style="margin-bottom:1em;">HealFit — ИИ‑платформа, которая формирует персональные рекомендации по питанию и тренировкам, подстраиваясь под твой ритм жизни!</p>
+          <p style="margin-bottom:1em;">Никаких запретов — только работающие привычки.</p>
+          <a class="btn" href="https://t.me/healfit_bot" target="_blank">Начать бесплатно</a>
+        </div>
+        <img src="tg_bot.png" alt="Скрин Telegram-бота HealFit" class="tg-img">
+      </div>
     </section>
 
     <!-- WHY -->
     <section id="why">
-      <h2>Почему это работает</h2>
-      <ul>
-        <li>Анкета 30 секунд — план на неделю уже в телефоне;</li>
-        <li>ИИ учитывает твои цели, вкусы и бюджет;</li>
-        <li>Геймификация: собирай «Энергию» и открывай уровни;</li>
-        <li>Реальные результаты — первые изменения через 7 дней.</li>
-      </ul>
+      <h2>Почему мы?</h2>
+      <div class="why-grid">
+        <div class="why-card"><h3>Персональный подход</h3><p>Питание — под твои вкусы, тренировки — под твой график. Программа подстраивается под тебя.</p></div>
+        <div class="why-card"><h3>ИИ под контролем экспертами</h3><p>Алгоритм обучен нутрициологами и тренерами, поэтому ему можно доверять.</p></div>
+        <div class="why-card"><h3>Плавный переход</h3><p>Меняем привычки постепенно, без стресса для организма — результат держится.</p></div>
+        <div class="why-card"><h3>Геймификация</h3><p>Баллы, уровни и маскот‑коуч превращают ЗОЖ в увлекательную игру.</p></div>
+      </div>
     </section>
 
     <!-- HOW -->
     <section id="how">
-      <h2>3 шага до нового тебя</h2>
-      <ul>
-        <li>Заполняешь короткую анкету в Telegram</li>
-        <li>Получаешь персональный рацион и тренировки</li>
-        <li>Следуешь подсказкам, наблюдаешь прогресс</li>
-      </ul>
+      <h2>Как это работает?</h2>
+      <div class="how-grid">
+        <div class="how-left">
+          <h3>3 шага до нового тебя</h3>
+          <ul>
+            <li>Проходишь короткую анкету в Telegram</li>
+            <li>Получаешь персональный план питания и тренировок</li>
+            <li>Следуешь подсказкам, наблюдаешь прогресс</li>
+          </ul>
+        </div>
+        <div class="how-right">
+          <h3>Почему это эффективно</h3>
+          <p>ИИ анализирует 10 000+ блюд и упражнений, учитывая последние исследования и регулярно обновляясь.</p>
+        </div>
+      </div>
     </section>
 
     <!-- FEATURES -->
     <section id="features">
-      <h2>Что внутри HealFit</h2>
+      <h2>Что внутри HealFit?</h2>
       <ul>
-        <li>База из 3 000 рецептов с КБЖУ</li>
-        <li>Домашние тренировки 10–30 минут</li>
-        <li>Синхронизация с Apple / Google Health</li>
-        <li>Маскот-коуч и ежедневные челленджи</li>
+        <li>3 000+ рецептов с точной КБЖУ</li>
+        <li>Тренировки любого уровня сложности для дома и зала</li>
+        <li>Маскот‑коуч и персональные челленджи</li>
       </ul>
+      <a class="btn" href="https://t.me/healfit_bot" target="_blank" style="margin-top:24px;">Присоединиться в Telegram</a>
     </section>
 
     <!-- CONTACT -->
     <section id="contact">
       <h2>Связаться с нами</h2>
-      <p>По любым вопросам пишите на <a href="mailto:ferrumhg@mail.ru">ferrumhg@mail.ru</a> — мы онлайн каждый день.</p>
+      <p>Пишите на <a href="mailto:admin@healfit.ru">admin@healfit.ru</a> — всегда на связи.</p>
     </section>
   </main>
 
   <script>
-    // подсветка активного пункта меню
-    const navLinks=[...document.querySelectorAll('.menu a'),document.querySelector('.logo')];
+    // динамическая подсветка меню
+    const navLinks=[...document.querySelectorAll('.menu a')];
     const sections=[...document.querySelectorAll('main section')];
     const observer=new IntersectionObserver(entries=>{
       entries.forEach(e=>{
-        if(e.isIntersecting){navLinks.forEach(l=>l.classList.toggle('active',l.getAttribute('href')&&l.getAttribute('href').slice(1)===e.target.id));}
-      });
-    },{threshold:.6});
-    sections.forEach(s=>observer.observe(s));
-  </script>
-</body>
-</html>
+        if(e.is
